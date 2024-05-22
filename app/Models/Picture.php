@@ -8,4 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 class Picture extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['title', 'user_id', 'price', 'status', 'category_id', 'file_path', 'ext'];
+
+    protected $appends = ['image_path'];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function orders() {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function reviews() {
+        return $this->belongsTo(Review::class);
+    }
+
+    public function getImagePathAttribute() {
+        return asset($this->file_path);
+    }
+
 }

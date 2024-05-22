@@ -22,6 +22,10 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $appends = [
+        'image_path'
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -44,4 +48,17 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function pictures() {
+        return $this->hasMany(Picture::class);
+    }
+
+    public function orders() {
+        return $this->hasMany(Order::class);
+    }
+
+    public function getImagePathAttribute() {
+        return "";
+    }
+
 }

@@ -16,6 +16,6 @@ class Order extends Model
     }
 
     public function picture() {
-        return $this->belongsTo(Picture::class)
+        return $this->belongsTo(Picture::class);
     }
 }
