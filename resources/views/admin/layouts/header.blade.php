@@ -2,14 +2,14 @@
     <div class="navbar-brand col-md-4 col-lg-3 me-0 px-3">
         <a href="#" class="text-decoration-none text-white">
             <i class="fas fa-user-tie"></i>
-            {{auth()->gaurd('admin')->user()->name}}
+            {{ auth()->guard('admin')->user()->name }}
         </a>
         <a onclick="document.getElementById('adminLogout').submit()" class="text-decoration-none text-white mx-3"
             href="#">
             <i class="fas fa-sign-out"></i>
             Sign out
         </a>
-        <form id="adminLogout" action="{{admin.logout}}" method="post">
+        <form id="adminLogout" action="{{ route('admin.logout') }}" method="post">
             @csrf
         </form>
     </div>

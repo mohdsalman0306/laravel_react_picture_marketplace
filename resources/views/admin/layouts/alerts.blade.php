@@ -1,5 +1,5 @@
 <div class="row mt-5">
-    <div class="col-md-6 mx-auto">
+    <div class="col-md-6 mx-auto mt-5 ">
         @if (session()->has('error'))
             <div class="alert alert-danger">
                 {{session()->get('error')}}

@@ -26,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.index');
+        return view('admin.categories.create');
     }
 
     /**
@@ -85,6 +85,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return view('admin.categories.index')->with(['success' => 'Category deleted successfully!']);
+        return redirect()->back()->with(['success' => 'Category deleted successfully!']);
     }
 }
