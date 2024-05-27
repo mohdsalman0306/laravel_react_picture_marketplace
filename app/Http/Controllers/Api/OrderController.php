@@ -25,7 +25,7 @@ class OrderController extends Controller
             $data['total'] = $this->calculateOrderTotal($request->pictures);
 
             //save the data
-            $order = Order::create($data);
+            Order::create($data);
 
             //return the response
             return response()->json([

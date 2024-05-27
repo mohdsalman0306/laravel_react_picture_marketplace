@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreImageRequest;
 use App\Http\Resources\PictureResource;
 use App\Http\Resources\UserResource;
 use App\Models\Category;
@@ -66,7 +67,7 @@ class PictureController extends Controller
      * Upload File
      */
 
-     public function uploadFile(Request $request) {
+     public function uploadFile(StoreImageRequest $request) {
         //get logged in user
         $user = User::find($request->user_id);
 

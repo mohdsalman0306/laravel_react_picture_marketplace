@@ -40,4 +40,54 @@ class ReviewController extends Controller
             ]);
         }
     }
+
+    /**
+     * Update Review
+     */
+
+    public function updateReview(Request $request) {
+        $review = Review::where([
+            'picture_id' => $request->picture_id,
+            'user_id' => $request->user_id
+        ])->first();
+
+        if($review) {
+            $review->update([
+                'comment' => $request->comment,
+                'rating' => $request->rating,
+                'approved' => 0,
+            ]);
+
+            return response()->json([
+                'message' => 'Your review has been updated and will be published soon.'
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Something went wrong. Please try again later.'
+            ]);
+        }
+    }
+
+    /**
+     * Delete Review
+     */
+
+    public function deleteReview(Request $request) {
+        $review = Review::where([
+            'picture_id' => $request->picture_id,
+            'user_id' => $request->user_id
+        ])->first();
+
+        if($review) {
+            $review->delete();
+
+            return response()->json([
+                'message' => 'Your review has been deleted successfully.'
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Something went wrong. Please try again later.'
+            ]);
+        }
+    }
 }
