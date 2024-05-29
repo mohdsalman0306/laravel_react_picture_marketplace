@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('store/order', [OrderController::class, 'store']);
     Route::post('download/picture', [PictureController::class, 'downloadPicture']);
     Route::post('store/review', [ReviewController::class, 'store']);
-    Route::post('update/review', [ReviewController::class, 'updateReview']);
+    Route::put('update/review', [ReviewController::class, 'updateReview']);
     Route::post('delete/review', [ReviewController::class, 'deleteReview']);
 });
 Route::post('user/register', [UserController::class, 'store']);
