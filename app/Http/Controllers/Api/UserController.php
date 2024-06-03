@@ -45,10 +45,11 @@ class UserController extends Controller
                     'error' => 'Credentials do not match any of our records'
                 ]);
             }
-
+            $token = $user->createToken('new_user')->plainTextToken;
+            //dd($token);
             return response()->json([
                 'user' => $user,
-                'access_token' => $user->createToken('new_user')->planeTextToken,
+                'access_token' => $token,
             ]);
         }
     }

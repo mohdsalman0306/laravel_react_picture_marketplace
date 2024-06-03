@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PictureController;
 use App\Http\Controllers\Api\ReviewController;
@@ -31,5 +31,5 @@ Route::get('pictures', [PictureController::class, 'index']);
 Route::get('pictures/{picture}', [PictureController::class, 'fetchById']);
 Route::get('pictures/category/{category}', [PictureController::class, 'fetchByCategory']);
 Route::post('find/pictures', [PictureController::class, 'fetchByTerm']);
-Route::post('extensions', [PictureController::class, 'fetchExtensions']);
+Route::get('extensions', [PictureController::class, 'fetchExtensions']);
 Route::get('pictures/extensions/{ext}', [PictureController::class, 'fetchByExt']);
