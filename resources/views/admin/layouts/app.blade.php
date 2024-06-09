@@ -13,7 +13,7 @@
         <!-- DataTables CSS -->
         <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
         @yield('styles')
-        <title>React & Laravel File Marketplace - @yield('title')</title>
+        <title>React & Laravel Picture Marketplace - @yield('title')</title>
     </head>
     <body class="bg-light">
         @if (auth()->guard('admin')->check())
