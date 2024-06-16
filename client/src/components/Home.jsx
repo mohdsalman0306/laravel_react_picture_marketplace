@@ -49,6 +49,16 @@ export default function Home() {
                             }
                         </div>
                     </div>
+                    <div className="col-md-4">
+                        <div className="card">
+                            <div className="card-header bg-white">
+                                <h5 className="text-center mt-2">
+                                    <i className="bi bi-filter-circle"></i> Filters
+                                </h5>
+                            </div>
+                            <div className="card-body"></div>
+                        </div>
+                    </div>
                 </div>
             }
         </div>
