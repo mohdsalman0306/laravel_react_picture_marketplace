@@ -2,11 +2,14 @@ import axios  from 'axios'
 import React, { useEffect, useState } from 'react'
 import { BASE_URL } from '../helper/config'
 import Spinner from './layouts/Spinner'
+import Categories from './partials/Categories'
+import useCategories from './custom-hooks/useCategories'
 
 export default function Home() {
 
     const [pictures, setPictures] = useState([])
     const [loading, setLoading] = useState(false)
+    const categories = useCategories(1);
 
     useEffect(() => {
         setLoading(true)
@@ -56,7 +59,9 @@ export default function Home() {
                                     <i className="bi bi-filter-circle"></i> Filters
                                 </h5>
                             </div>
-                            <div className="card-body"></div>
+                            <div className="card-body">
+                                <Categories categories={categories }></Categories>
+                            </div>
                         </div>
                     </div>
                 </div>
