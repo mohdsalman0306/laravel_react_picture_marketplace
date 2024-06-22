@@ -37,6 +37,7 @@ const Upload = () => {
 
     const storeImage = async (e) => {
         e.preventDefault()
+        setErrors([])
         setLoading(true)
         const formData = new FormData()
         formData.append('file', picture.file)
@@ -57,9 +58,7 @@ const Upload = () => {
         } catch (error) {
             setLoading(false)
             if (error?.response?.status === 422) {
-                console.log(error.response.data.errors)
                 setErrors(error.response.data.errors)
-                console.log(errors);
             }
             console.log(error)
         }
@@ -127,6 +126,7 @@ const Upload = () => {
                                         required={!picture.file}
                                         maxSize={2}
                                         onSizeError={handleSizeError}
+                                        classes="drop_area"
                                     />
                                     {
                                         fileSizeError && <div className="text-white my-2 rounded p-2 bg-danger">

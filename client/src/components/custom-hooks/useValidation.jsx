@@ -1,11 +1,10 @@
-export default function useValidation(errors, field){
+export default function useValidation(errors, field) {
     const renderErrors = (field) => {
         errors?.[field]?.map((error, index) => (
-            console.log(field, error)
-            // <div key={index} className="text-white my-2 rounded p-2 bg-danger">
-            //     {error}
-            // </div>
-        ))
-    }
+            <div key={index} className="text-white my-2 rounded p-2 bg-danger">
+                {error}
+            </div>
+        ));
+    };
     return renderErrors(field);
-};
+}
