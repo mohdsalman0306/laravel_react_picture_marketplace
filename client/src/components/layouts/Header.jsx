@@ -16,6 +16,10 @@ export default function Header() {
                             <i className="bi bi-house"></i> Home</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/upload ">
+                        <i className="bi bi-upload"></i> Upload</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/register">
                         <i className="bi bi-person-add"></i> Register</Link>
                     </li>

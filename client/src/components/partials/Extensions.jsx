@@ -1,19 +1,19 @@
-const Categories = ({categories}) => {
+const Extensions = ({extensions}) => {
   return (
     <>
-        <h6>Categories</h6>
+        <h6>Extensions</h6>
         <ul className="list-group">
             {
-                categories?.map(category => (
-                    <li key={category.id} className="list-group-item border-0">
+                extensions?.map((extension, index) => (
+                    <li key={index} className="list-group-item border-0">
                         <div className="form-check-flex-grow-1">
                             <input
                                 type="radio"
                                 className="form-check-input mx-2"
                                 name=""
-                                id={category.id} />
-                            <label htmlFor={category.id} className="form-check-label">
-                                {category.name}
+                                id={index} />
+                            <label htmlFor={index} className="form-check-label">
+                                {extension.ext}
                             </label>
                         </div>
                     </li>
@@ -24,4 +24,5 @@ const Categories = ({categories}) => {
   )
 }
 
-export default Categories
+export default Extensions
+

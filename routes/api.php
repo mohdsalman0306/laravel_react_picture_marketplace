@@ -17,13 +17,14 @@ Route::middleware('auth:sanctum')->group(function() {
         ];
     });
     Route::post('user/logout', [UserController::class, 'logout']);
-    Route::post('store/picture', [PictureController::class, 'uploadFile']);
+
     Route::post('store/order', [OrderController::class, 'store']);
     Route::post('download/picture', [PictureController::class, 'downloadPicture']);
     Route::post('store/review', [ReviewController::class, 'store']);
     Route::put('update/review', [ReviewController::class, 'updateReview']);
     Route::post('delete/review', [ReviewController::class, 'deleteReview']);
 });
+Route::post('store/picture', [PictureController::class, 'uploadFile']);
 Route::post('user/register', [UserController::class, 'store']);
 Route::post('user/login', [UserController::class, 'auth']);
 Route::get('categories/{hasPictures}', [CategoryController::class, 'index']);

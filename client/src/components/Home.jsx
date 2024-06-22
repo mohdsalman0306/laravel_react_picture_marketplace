@@ -4,10 +4,12 @@ import { BASE_URL } from '../helper/config'
 import Spinner from './layouts/Spinner'
 import Categories from './partials/Categories'
 import useCategories from './custom-hooks/useCategories'
+import Extensions from './partials/Extensions'
 
 export default function Home() {
 
     const [pictures, setPictures] = useState([])
+    const [extensions, setExtensions] = useState([])
     const [loading, setLoading] = useState(false)
     const categories = useCategories(1);
 
@@ -16,7 +18,6 @@ export default function Home() {
         const fetchPictures = async () => {
             try {
                 const response = await axios.get(`${BASE_URL}/pictures`)
-                //console.log(response.data.data)
                 setPictures(response.data.data)
                 setLoading(false)
             } catch (error) {
@@ -24,7 +25,17 @@ export default function Home() {
                 setLoading(false)
             }
         }
+        const fetchExtensions = async () => {
+            try {
+                const response = await axios.get(`${BASE_URL}/extensions`)
+                setExtensions(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
         fetchPictures()
+        fetchExtensions()
     }, [])
 
     return (
@@ -37,8 +48,8 @@ export default function Home() {
                     <div className="col-md-8">
                         <div className="row">
                             {
-                                pictures?.map(picture => (
-                                    <div className="col-md-6 md-2">
+                                pictures?.map((picture, index) => (
+                                    <div className="col-md-6 md-2" key={index}>
                                         <div className="card">
                                             <img
                                                 src={picture.image_path}
@@ -61,6 +72,8 @@ export default function Home() {
                             </div>
                             <div className="card-body">
                                 <Categories categories={categories }></Categories>
+                                <hr />
+                                <Extensions extensions={extensions}></Extensions>
                             </div>
                         </div>
                     </div>

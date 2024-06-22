@@ -79,9 +79,9 @@ class PictureController extends Controller
         Picture::create([
             'title' => $request->title,
             'price' => $request->price,
-            'user_id' => $request->user_id,
+            'user_id' => $user->id,
             'category_id' => $request->category_id,
-            'file_path' => 'storage/user/images'.$file_name,
+            'file_path' => 'storage/user/images/'.$file_name,
             'ext' => $file->getClientOriginalExtension()
         ]);
 
