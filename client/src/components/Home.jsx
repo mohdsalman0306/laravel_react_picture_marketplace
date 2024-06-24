@@ -12,14 +12,29 @@ export default function Home() {
     const [extensions, setExtensions] = useState([])
     const [loading, setLoading] = useState(false)
     const categories = useCategories(1);
+    const [categoryId, setCategoryId] = useState('')
+    const [pictureExt, setPictureExt] = useState('')
+    const [picturesToShow, setPicturesToShow] = useState(2)
 
     useEffect(() => {
         setLoading(true)
         const fetchPictures = async () => {
             try {
-                const response = await axios.get(`${BASE_URL}/pictures`)
-                setPictures(response.data.data)
-                setLoading(false)
+                if (categoryId) {
+                    const response = await axios.get(`${BASE_URL}/pictures/category/${categoryId}`)
+                    setPictures(response.data.data)
+                    setLoading(false)
+                }
+                else if (pictureExt) {
+                    const response = await axios.get(`${BASE_URL}/pictures/extensions/${pictureExt}`)
+                    setPictures(response.data.data)
+                    setLoading(false)
+                } else {
+                    const response = await axios.get(`${BASE_URL}/pictures`)
+                    setPictures(response.data.data)
+                    setLoading(false)
+                }
+
             } catch (error) {
                 console.log(error)
                 setLoading(false)
@@ -36,7 +51,15 @@ export default function Home() {
 
         fetchPictures()
         fetchExtensions()
-    }, [])
+    }, [categoryId, pictureExt])
+
+    const loadMorePictures = () => {
+        if (picturesToShow > pictures.length) {
+            return
+        } else {
+            setPicturesToShow(prevPicturesToShow => prevPicturesToShow +=2)
+        }
+    }
 
     return (
         <div className='container'>
@@ -48,7 +71,7 @@ export default function Home() {
                     <div className="col-md-8">
                         <div className="row">
                             {
-                                pictures?.map((picture, index) => (
+                                pictures?.slice(0, picturesToShow).map((picture, index) => (
                                     <div className="col-md-6 md-2" key={index}>
                                         <div className="card">
                                             <img
@@ -62,6 +85,12 @@ export default function Home() {
                                 ))
                             }
                         </div>
+                        {
+                            picturesToShow < pictures.length &&
+                            <div className="d-flex justify-content-center my-3">
+                                <button onClick={() => loadMorePictures()} className="btn btn-sm btn-dark">Load More</button>
+                            </div>
+                        }
                     </div>
                     <div className="col-md-4">
                         <div className="card">
@@ -71,9 +100,19 @@ export default function Home() {
                                 </h5>
                             </div>
                             <div className="card-body">
-                                <Categories categories={categories }></Categories>
+                                <Categories
+                                    categories = {categories }
+                                    setCategoryId = {setCategoryId}
+                                    categoryId = {categoryId}
+                                    setPictureExt={setPictureExt}
+                                ></Categories>
                                 <hr />
-                                <Extensions extensions={extensions}></Extensions>
+                                <Extensions
+                                    setCategoryId={setCategoryId}
+                                    extensions={extensions}
+                                    setPictureExt={setPictureExt}
+                                    pictureExt={pictureExt}
+                                ></Extensions>
                             </div>
                         </div>
                     </div>

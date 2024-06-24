@@ -5,7 +5,7 @@ import { FileUploader } from "react-drag-drop-files";
 import Spinner from "../layouts/Spinner";
 import axios from "axios";
 import { BASE_URL } from "../../helper/config";
-import {ToastContainer, toast} from 'react-toastify'
+import {toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import useValidation from "../custom-hooks/useValidation";
 
@@ -110,11 +110,14 @@ const Upload = () => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="price" className="form-label">Price*</label>
-                                    <input type="number" name="price" id="price"
-                                    className="form-control"
-                                    onChange={(e) => setPicture({
-                                        ...picture, price:e.target.value
-                                    })}
+                                    <input
+                                        type="number"
+                                        name="price"
+                                        id="price"
+                                        className="form-control"
+                                        onChange={(e) => setPicture({
+                                            ...picture, price:e.target.value
+                                        })}
                                     />
                                     {useValidation(errors, 'price')}
                                 </div>
