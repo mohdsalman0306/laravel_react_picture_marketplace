@@ -14,7 +14,7 @@ export default function Home() {
     const categories = useCategories(1);
     const [categoryId, setCategoryId] = useState('')
     const [pictureExt, setPictureExt] = useState('')
-    const [picturesToShow, setPicturesToShow] = useState(2)
+    const [picturesToShow, setPicturesToShow] = useState(6)
 
     useEffect(() => {
         setLoading(true)
@@ -57,7 +57,7 @@ export default function Home() {
         if (picturesToShow > pictures.length) {
             return
         } else {
-            setPicturesToShow(prevPicturesToShow => prevPicturesToShow +=2)
+            setPicturesToShow(prevPicturesToShow => prevPicturesToShow +=6)
         }
     }
 
