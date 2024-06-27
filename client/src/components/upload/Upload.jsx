@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useCategories from "../custom-hooks/useCategories";
 import { useNavigate } from "react-router-dom";
 import { FileUploader } from "react-drag-drop-files";
 import Spinner from "../layouts/Spinner";
 import axios from "axios";
-import { BASE_URL } from "../../helper/config";
+import { BASE_URL, getConfig } from "../../helper/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useValidation from "../custom-hooks/useValidation";
+import { useSelector } from "react-redux";
 
 const Upload = () => {
     const [picture, setPicture] = useState({
@@ -23,6 +24,7 @@ const Upload = () => {
     const navigate = useNavigate();
     const fileTypes = ["JPG", "PNG", "JPEG", "GIF"];
     const [fileSizeError, setFileSizeError] = useState("");
+    const { token } = useSelector((state) => state.user);
 
     const handleChange = (file) => {
         setFileSizeError("");
@@ -50,7 +52,8 @@ const Upload = () => {
         try {
             const response = await axios.post(
                 `${BASE_URL}/store/picture`,
-                formData
+                formData,
+                getConfig(token)
             );
             setLoading(false);
             toast.success(response.data.message, {
