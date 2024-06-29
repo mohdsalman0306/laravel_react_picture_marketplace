@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useCategories from "../custom-hooks/useCategories";
 import { useNavigate } from "react-router-dom";
 import { FileUploader } from "react-drag-drop-files";
