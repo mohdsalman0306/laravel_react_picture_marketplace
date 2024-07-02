@@ -26,7 +26,6 @@ const Upload = () => {
     const navigate = useNavigate();
     const fileTypes = ["JPG", "PNG", "JPEG", "GIF"];
     const [fileSizeError, setFileSizeError] = useState("");
-    
     const dispatch = useDispatch()
 
     useEffect(() => {
