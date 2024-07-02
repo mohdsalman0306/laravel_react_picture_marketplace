@@ -16,7 +16,7 @@ Route::middleware('auth:sanctum')->group(function() {
             'currentToken' => $request->bearerToken()
         ];
     });
-    Route::post('user/logout', [UserController::class, 'logout']);
+    Route::get('user/logout', [UserController::class, 'logout']);
     Route::post('store/picture', [PictureController::class, 'uploadFile']);
     Route::post('store/order', [OrderController::class, 'store']);
     Route::post('download/picture', [PictureController::class, 'downloadPicture']);
