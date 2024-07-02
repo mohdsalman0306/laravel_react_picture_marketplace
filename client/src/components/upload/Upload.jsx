@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCategories from "../custom-hooks/useCategories";
 import { useNavigate } from "react-router-dom";
 import { FileUploader } from "react-drag-drop-files";
@@ -8,14 +8,16 @@ import { BASE_URL, getConfig } from "../../helper/config";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useValidation from "../custom-hooks/useValidation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "../../redux/slices/userSlice";
 
 const Upload = () => {
+    const { user, isLoggedIn, token } = useSelector((state) => state.user);
     const [picture, setPicture] = useState({
         title: "",
         price: "",
         category_id: "",
-        user_id: 1,
+        user_id: user?.id,
         file: null,
     });
     const categories = useCategories(0);
@@ -24,7 +26,13 @@ const Upload = () => {
     const navigate = useNavigate();
     const fileTypes = ["JPG", "PNG", "JPEG", "GIF"];
     const [fileSizeError, setFileSizeError] = useState("");
-    const { token } = useSelector((state) => state.user);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate("/login");
+        }
+    }, [isLoggedIn, navigate]);
 
     const handleChange = (file) => {
         setFileSizeError("");
@@ -53,9 +61,10 @@ const Upload = () => {
             const response = await axios.post(
                 `${BASE_URL}/store/picture`,
                 formData,
-                getConfig(token)
+                getConfig(token, 'multipart/form-data')
             );
             setLoading(false);
+            dispatch(setCurrentUser(response.data.user))
             toast.success(response.data.message, {
                 position: "top-right",
             });
