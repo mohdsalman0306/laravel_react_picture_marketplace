@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, getConfig } from "../../helper/config";
-import { setCurrentUser, setLoggedInOut, setToken } from "../../redux/slices/userSlice";
+import {
+    setCurrentUser,
+    setLoggedInOut,
+    setToken,
+} from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
-
 
 export default function Header() {
     const { isLoggedIn, user, token } = useSelector((state) => state.user);
@@ -44,13 +47,13 @@ export default function Header() {
             dispatch(setToken(""));
             toast.success(response.data.message, {
                 position: "top-right",
-            })
-            navigate('/login')
+            });
+            navigate("/login");
         } catch (error) {
             console.log(error);
         }
     };
-    
+
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
@@ -75,7 +78,9 @@ export default function Header() {
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link
-                                className="nav-link active"
+                                className={`nav-link ${
+                                    location.pathname === "/" ? "active" : ""
+                                }`}
                                 aria-current="page"
                                 to="/"
                             >
@@ -83,20 +88,39 @@ export default function Header() {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/upload ">
+                            <Link
+                                className={`nav-link ${
+                                    location.pathname === "/upload"
+                                        ? "active"
+                                        : ""
+                                }`}
+                                aria-current="page"
+                                to="/upload "
+                            >
                                 <i className="bi bi-upload"></i> Upload
                             </Link>
                         </li>
                         {isLoggedIn ? (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/register">
+                                    <Link
+                                        className={`nav-link ${
+                                            location.pathname === "/profile"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        aria-current="page"
+                                        to="/profile"
+                                    >
                                         <i className="bi bi-person"></i>
                                         {user?.name}
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="nav-link border-0 bg-light" onClick={() => logoutUser()}>
+                                    <button
+                                        className="nav-link border-0 bg-light"
+                                        onClick={() => logoutUser()}
+                                    >
                                         <i className="bi bi-person-fill-down"></i>
                                         {"Logout"}
                                     </button>
@@ -105,13 +129,27 @@ export default function Header() {
                         ) : (
                             <>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/register">
+                                    <Link
+                                        className={`nav-link ${
+                                            location.pathname === "/register"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        to="/register"
+                                    >
                                         <i className="bi bi-person-add"></i>{" "}
                                         Register
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/login">
+                                    <Link
+                                        className={`nav-link ${
+                                            location.pathname === "/login"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        to="/login"
+                                    >
                                         <i className="bi bi-person-fill-up"></i>{" "}
                                         Login
                                     </Link>
