@@ -5,6 +5,7 @@ import Login from "./components/user/Login"
 import Header from "./components/layouts/Header"
 import Upload from "./components/upload/Upload"
 import Profile from "./components/user/Profile"
+import Picture from "./components/pictures/Picture"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/upload" element={<Upload/>}/>
             <Route path="/profile" element={<Profile/>}/>
+            <Route path="/picture/:id" element={<Picture/>}/>
         </Routes>
     </BrowserRouter>
   )
