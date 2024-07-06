@@ -33,3 +33,4 @@ Route::get('pictures/category/{category}', [PictureController::class, 'fetchByCa
 Route::post('find/pictures', [PictureController::class, 'fetchByTerm']);
 Route::get('extensions', [PictureController::class, 'fetchExtensions']);
 Route::get('pictures/extensions/{ext}', [PictureController::class, 'fetchByExt']);
+
