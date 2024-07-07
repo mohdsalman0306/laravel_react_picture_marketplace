@@ -6,6 +6,7 @@ import Header from "./components/layouts/Header"
 import Upload from "./components/upload/Upload"
 import Profile from "./components/user/Profile"
 import Picture from "./components/pictures/Picture"
+import Cart from "./components/cart/Cart"
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/upload" element={<Upload/>}/>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/picture/:id" element={<Picture/>}/>
+            <Route path="/cart" element={<Cart/>}/>
         </Routes>
     </BrowserRouter>
   )

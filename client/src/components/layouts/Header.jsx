@@ -3,15 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
 import { BASE_URL, getConfig } from "../../helper/config";
-import {
-    setCurrentUser,
-    setLoggedInOut,
-    setToken,
-} from "../../redux/slices/userSlice";
+import { setCurrentUser, setLoggedInOut, setToken } from "../../redux/slices/userSlice";
 import { toast } from "react-toastify";
 
 export default function Header() {
     const { isLoggedIn, user, token } = useSelector((state) => state.user);
+    const { cartItems } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
@@ -98,6 +95,19 @@ export default function Header() {
                                 to="/upload "
                             >
                                 <i className="bi bi-upload"></i> Upload
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link ${
+                                    location.pathname === "/cart"
+                                        ? "active"
+                                        : ""
+                                }`}
+                                aria-current="page"
+                                to="/cart "
+                            >
+                                <i className="bi bi-bag"></i> Cart {`(${cartItems.length})`}
                             </Link>
                         </li>
                         {isLoggedIn ? (
