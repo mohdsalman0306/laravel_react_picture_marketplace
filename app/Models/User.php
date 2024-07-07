@@ -59,7 +59,7 @@ class User extends Authenticatable
     }
 
     public function getImagePathAttribute() {
-        return "";
+        return "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg";
     }
 
 }
